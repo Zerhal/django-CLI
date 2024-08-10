@@ -1,0 +1,12 @@
+[package]
+name = "django_cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.5.15", features = ["derive"] }
+clap_derive = "4.5.13"
+
+
+[target.x86_64-apple-darwin]
+linker = "zog cc"
