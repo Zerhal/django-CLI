@@ -125,13 +125,6 @@ jobs:
           name: windows-latest-artifacts
           path: dist/windows/
 
-      - name: Generate Changelog
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          output-file: CHANGELOG.md
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -140,7 +133,6 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
-          body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
 
