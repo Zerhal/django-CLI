@@ -5,7 +5,7 @@ mod utils;
 
 use config::get_project_config;
 use django::{configure_django_project, create_django_project, install_dependencies};
-use utils::print_metadata;
+use utils::tools::print_metadata;
 
 fn main() {
     // Afficher les métadonnées en haut du terminal

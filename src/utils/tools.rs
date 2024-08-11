@@ -1,8 +1,8 @@
-use std::io::{self, Write};
 use crate::commands::setup_command;
+use std::io::{self, Write};
 
 /// Displays a prompt with a list of options and lets the user select one.
-/// 
+///
 /// # Arguments
 ///
 /// * `prompt` - A string slice that holds the prompt message.

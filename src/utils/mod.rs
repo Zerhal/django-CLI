@@ -1,3 +1,3 @@
-pub mod install;
 pub mod check;
-pub mod utils;
+pub mod install;
+pub mod tools;

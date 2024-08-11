@@ -1,7 +1,7 @@
 use std::process::{Command as ShellCommand, Stdio};
 
 /// Checks if a given command is available on the system by trying to run it with the `--version` argument.
-/// 
+///
 /// # Arguments
 ///
 /// * `command` - A string slice representing the command to check (e.g., "python").
@@ -10,7 +10,7 @@ use std::process::{Command as ShellCommand, Stdio};
 ///
 /// * `true` if the command is available (i.e., it runs successfully with the `--version` argument),
 /// * `false` otherwise.
-/// 
+///
 /// # Example
 ///
 /// ```
@@ -31,7 +31,7 @@ pub fn is_command_available(command: &str) -> bool {
 }
 
 /// Retrieves the version of Python by running the given command with the `--version` argument.
-/// 
+///
 /// # Arguments
 ///
 /// * `command` - A string slice representing the Python command to check (e.g., "python" or "python3").
@@ -40,7 +40,7 @@ pub fn is_command_available(command: &str) -> bool {
 ///
 /// * `Some((major, minor))` where `major` and `minor` are the major and minor version numbers of Python,
 /// * `None` if the version could not be determined.
-/// 
+///
 /// # Example
 ///
 /// ```
@@ -51,13 +51,15 @@ pub fn is_command_available(command: &str) -> bool {
 /// }
 /// ```
 pub fn get_python_version(command: &str) -> Option<(u32, u32)> {
-    let output = ShellCommand::new(command)
-        .arg("--version")
-        .output()
-        .ok()?;
+    let output = ShellCommand::new(command).arg("--version").output().ok()?;
 
     let version_string = String::from_utf8_lossy(&output.stdout);
-    let version_parts: Vec<&str> = version_string.trim().split_whitespace().nth(1)?.split('.').collect();
+    let version_parts: Vec<&str> = version_string
+        .trim()
+        .split_whitespace()
+        .nth(1)?
+        .split('.')
+        .collect();
 
     if version_parts.len() >= 2 {
         let major = version_parts[0].parse::<u32>().ok()?;

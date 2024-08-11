@@ -1,5 +1,5 @@
 use crate::commands::setup_command;
-use crate::utils::{get_project_name, sanitize_project_name, select_option};
+use crate::utils::tools::{get_project_name, sanitize_project_name, select_option};
 
 #[allow(dead_code)]
 pub struct ProjectConfig {

@@ -1,7 +1,7 @@
 use crate::config::ProjectConfig;
+use crate::utils::install::install_django;
 use std::fs;
 use std::process::Command as ShellCommand;
-use crate::utils::install::install_django;
 
 pub fn create_django_project(project_name: &str) {
     println!("Checking Django installation...");
@@ -20,7 +20,6 @@ pub fn create_django_project(project_name: &str) {
 
     println!("Django project '{}' created successfully.", project_name);
 }
-
 
 pub fn configure_django_project(config: &ProjectConfig) {
     println!("Configuration du projet...");

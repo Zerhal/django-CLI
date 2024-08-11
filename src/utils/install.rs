@@ -1,8 +1,9 @@
-use std::process::{Command as ShellCommand};
+use crate::utils::check::{get_python_version, is_command_available};
 use std::env;
-use crate::utils::check::{is_command_available, get_python_version};
+use std::process::Command as ShellCommand;
 
-const PYTHON_INSTALL_URL_WINDOWS: &str = "https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe";
+const PYTHON_INSTALL_URL_WINDOWS: &str =
+    "https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe";
 const DJANGO_PYTHON_COMPATIBILITY: &[(u32, u32, &str)] = &[
     (3, 6, "3.2"),
     (3, 7, "3.2"),
@@ -13,7 +14,7 @@ const DJANGO_PYTHON_COMPATIBILITY: &[(u32, u32, &str)] = &[
     (3, 12, "4.2.8"),
 ];
 
-/// Ensures that Python is installed and compatible with Django. 
+/// Ensures that Python is installed and compatible with Django.
 /// If no compatible Python version is found, installs Python 3.12 and sets Django 4.2.8 as the target version.
 ///
 /// # Returns
@@ -33,7 +34,7 @@ const DJANGO_PYTHON_COMPATIBILITY: &[(u32, u32, &str)] = &[
 pub fn install_python() -> String {
     let python_commands = ["python", "python3"];
     let mut compatible_command = None;
-    let mut django_version = None;
+    let mut _django_version = None;
 
     for command in &python_commands {
         if is_command_available(command) {
@@ -41,7 +42,7 @@ pub fn install_python() -> String {
                 for &(py_major, py_minor, django_ver) in DJANGO_PYTHON_COMPATIBILITY {
                     if major == py_major && minor == py_minor {
                         compatible_command = Some(command.to_string());
-                        django_version = Some(django_ver);
+                        _django_version = Some(django_ver);
                         break;
                     }
                 }
@@ -86,7 +87,7 @@ pub fn install_python() -> String {
         }
 
         compatible_command = Some("python3.12".to_string());
-        django_version = Some("4.2.8");
+        _django_version = Some("4.2.8");
     }
 
     compatible_command.expect("Python installation failed or is still unavailable.")
@@ -138,7 +139,7 @@ pub fn install_pip() -> String {
     panic!("Pip installation failed or is still unavailable.");
 }
 
-/// Ensures that Django is installed using pip. If not installed, it installs Django 4.2.8, 
+/// Ensures that Django is installed using pip. If not installed, it installs Django 4.2.8,
 /// particularly if Python 3.12 was installed by `install_python`.
 ///
 /// # Panics
@@ -154,7 +155,7 @@ pub fn install_pip() -> String {
 pub fn install_django() {
     let pip_command = install_pip(); // Ensure pip is installed and get the command
 
-    let django_version = "4.2.8";  // Force the use of Django 4.2.8 in case of Python 3.12
+    let django_version = "4.2.8"; // Force the use of Django 4.2.8 in case of Python 3.12
 
     if is_command_available("django-admin") {
         println!("Django-admin is already installed.");
