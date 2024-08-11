@@ -37,7 +37,9 @@ pub fn get_project_name() -> String {
 }
 
 pub fn sanitize_project_name(name: &str) -> String {
-    let sanitized = name.trim().replace(|c: char| !c.is_alphanumeric() && c != '_', "_");
+    let sanitized = name
+        .trim()
+        .replace(|c: char| !c.is_alphanumeric() && c != '_', "_");
     if sanitized.chars().next().unwrap().is_ascii_digit() {
         format!("_{}", sanitized)
     } else {
