@@ -56,7 +56,7 @@ pub fn install_python() -> String {
         match env::consts::OS {
             "windows" => {
                 if let Err(err) = ShellCommand::new("cmd")
-                    .args(&["/C", "start", PYTHON_INSTALL_URL_WINDOWS])
+                    .args(["/C", "start", PYTHON_INSTALL_URL_WINDOWS])
                     .status()
                 {
                     panic!("Failed to download Python for Windows: {}", err);
@@ -122,7 +122,7 @@ pub fn install_pip() -> String {
 
     println!("pip is not installed. Installing pip...");
 
-    if let Err(err) = ShellCommand::new(&python_command)
+    if let Err(err) = ShellCommand::new(python_command)
         .arg("-m")
         .arg("ensurepip")
         .status()
@@ -162,7 +162,7 @@ pub fn install_django() {
     } else {
         println!("Django-admin is not installed. Installing Django...");
 
-        if let Err(err) = ShellCommand::new(&pip_command)
+        if let Err(err) = ShellCommand::new(pip_command)
             .arg("install")
             .arg(format!("django=={}", django_version))
             .status()

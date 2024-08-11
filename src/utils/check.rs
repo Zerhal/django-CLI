@@ -55,7 +55,6 @@ pub fn get_python_version(command: &str) -> Option<(u32, u32)> {
 
     let version_string = String::from_utf8_lossy(&output.stdout);
     let version_parts: Vec<&str> = version_string
-        .trim()
         .split_whitespace()
         .nth(1)?
         .split('.')
