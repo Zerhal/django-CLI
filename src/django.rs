@@ -1,18 +1,26 @@
 use crate::config::ProjectConfig;
 use std::fs;
 use std::process::Command as ShellCommand;
+use crate::utils::install::install_django;
 
 pub fn create_django_project(project_name: &str) {
-    println!("Création du projet Django...");
+    println!("Checking Django installation...");
 
+    // Ensure Django is installed, installing Python if necessary
+    install_django();
+
+    println!("Creating Django project...");
+
+    // Create the Django project using the installed django-admin
     ShellCommand::new("django-admin")
         .arg("startproject")
         .arg(project_name)
         .status()
         .expect("Failed to create Django project");
 
-    println!("Projet Django {} créé avec succès.", project_name);
+    println!("Django project '{}' created successfully.", project_name);
 }
+
 
 pub fn configure_django_project(config: &ProjectConfig) {
     println!("Configuration du projet...");
