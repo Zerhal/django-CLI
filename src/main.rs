@@ -1,27 +1,56 @@
-mod commands;
-mod config;
-mod django;
+// src/main.rs
+
+mod cli;
 mod utils;
 
-use config::get_project_config;
-use django::{configure_django_project, create_django_project, install_dependencies};
-use utils::tools::print_metadata;
+use clap::builder::styling::{AnsiColor, Effects, Styles};
+use clap::Parser;
+
+fn styles() -> Styles {
+    Styles::styled()
+        .header(AnsiColor::Green.on_default() | Effects::BOLD)
+        .usage(AnsiColor::Green.on_default() | Effects::BOLD)
+        .literal(AnsiColor::Blue.on_default() | Effects::BOLD)
+        .placeholder(AnsiColor::Cyan.on_default())
+}
+
+
+#[derive(Parser)]
+#[command(
+    name = "Django CLI",
+    version = "1.0",
+    author = "Zerhal <jessy.viotti90@gmail.com>",
+    about = "Django CLI",
+    long_about = Some("Ultimate CLI for fast and easy Django development."),
+    after_help = "More information at https://github.com/Zerhal/django-CLI", 
+    styles = styles()
+)]
+struct Opts {
+    #[command(subcommand)]
+    subcmd: SubCommand,
+}
+
+#[derive(Parser)]
+enum SubCommand {
+    #[command(
+        about = "Create a new Django project",
+        long_about = Some("This command creates a new Django project with the given name."),
+        alias = "new",
+        after_help = "Example:\n  django-cli create-project"
+    )]
+    CreateProject,
+}
 
 fn main() {
-    // Afficher les métadonnées en haut du terminal
-    print_metadata();
+    let opts = Opts::parse();
 
-    // Obtenir la configuration du projet à partir des arguments ou des invites utilisateur
-    let project_config = get_project_config();
-
-    // Créer le projet Django
-    create_django_project(&project_config.project_name);
-
-    // Configurer le projet Django
-    configure_django_project(&project_config);
-
-    // Installer les dépendances
-    install_dependencies(&project_config.project_name);
-
-    println!("Projet Django configuré avec succès !");
+    match opts.subcmd {
+        SubCommand::CreateProject => {
+            if let Err(e) = cli::project::project::create_project() {
+                eprintln!("{}", format!("Error: {}", e));
+            } else {
+                println!("{}", "Project created successfully!");
+            }
+        },
+    }
 }

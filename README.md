@@ -45,7 +45,7 @@ Here’s how to use this CLI tool to initialize a new Django project:
 ```bash
 cd target/release
 # Command to initialize a new Django project
-django_cli
+django-cli
 ```
 
 In the future, additional commands will be added to manage tasks like health checks and more.

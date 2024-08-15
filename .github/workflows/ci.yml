@@ -172,7 +172,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/windows/django_cli.exe.sha256
+          asset_path: dist/windows/django-cli.exe.sha256
           asset_name: windows-checksums
           asset_content_type: text/plain
 
@@ -182,7 +182,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/ubuntu/django_cli.sha256
+          asset_path: dist/ubuntu/django-cli.sha256
           asset_name: ubuntu-checksums
           asset_content_type: text/plain
 
@@ -192,6 +192,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/macos/django_cli.sha256
+          asset_path: dist/macos/django-cli.sha256
           asset_name: macos-checksums
           asset_content_type: text/plain
