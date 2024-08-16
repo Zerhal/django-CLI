@@ -14,7 +14,6 @@ fn styles() -> Styles {
         .placeholder(AnsiColor::Cyan.on_default())
 }
 
-
 #[derive(Parser)]
 #[command(
     name = "Django CLI",
@@ -41,12 +40,13 @@ enum SubCommand {
     CreateProject,
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let opts = Opts::parse();
 
     match opts.subcmd {
         SubCommand::CreateProject => {
-            if let Err(e) = cli::project::project::create_project() {
+            if let Err(e) = cli::project::create_project().await {
                 eprintln!("{}", format!("Error: {}", e));
             } else {
                 println!("{}", "Project created successfully!");
