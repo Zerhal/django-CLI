@@ -11,7 +11,7 @@ db.sqlite3-journal
 media
 
 # Environnement virtuel
-{{venv_name}}/
+{{ venv_name | default(value="Venv") }}/
 ENV/
 
 # IDE

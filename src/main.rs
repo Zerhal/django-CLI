@@ -42,6 +42,7 @@ enum SubCommand {
 
 #[tokio::main]
 async fn main() {
+    env_logger::init();
     let opts = Opts::parse();
 
     match opts.subcmd {

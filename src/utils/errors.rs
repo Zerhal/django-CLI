@@ -22,7 +22,8 @@ pub enum ProjectError {
     JsonError(#[from] serde_json::Error),
 
     #[error("Dialoguer error: {0}")]
-    DialoguerError(#[from] dialoguer::Error), // Added this variant
+    DialoguerError(#[from] dialoguer::Error),
 
-    // Add more error types as needed
+    #[error("Invalid frontend framework: {0}")]
+    InvalidFrontendFramework(String), 
 }

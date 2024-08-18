@@ -1,0 +1,39 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cargo build debug",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "detail": "Build the Rust project using Cargo"
+        },
+		
+        {
+            "label": "cargo build release",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "build",
+				"--release"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "detail": "Build the Rust project using Cargo"
+        },
+    ]
+}

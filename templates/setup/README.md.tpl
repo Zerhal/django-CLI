@@ -1,24 +1,22 @@
-# Projet Django
+# Django Project - {{ name }}
 
-Ce projet a été configuré avec Django {{django_version}} et Python {{python_version}}.
+## Environment Setup
 
-## Configuration de l'environnement
+1. Ensure you have Python installed.
+2. Activate the virtual environment:
+   - On Windows: `venv\Scripts\activate`
+   - On Unix or MacOS: `source venv/bin/activate`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Run the development server: `python manage.py runserver`
 
-1. Assurez-vous d'avoir Python {{python_version}} installé.
-2. Activez l'environnement virtuel :
-   - Windows: `{{venv_name}}\Scripts\activate`
-   - Unix ou MacOS: `source {{venv_name}}/bin/activate`
-3. Installez les dépendances : `pip install -r requirements.txt`
-4. Lancez le serveur de développement : `python manage.py runserver`
+## Project Structure
 
-## Structure du projet
+[Describe the project structure here]
 
-[Décrivez ici la structure de votre projet]
+## Contributing
 
-## Contribuer
+[Explain how to contribute to the project]
 
-[Expliquez comment contribuer au projet]
+## License
 
-## Licence
-
-[Indiquez la licence du projet]
+[Specify the project's license]

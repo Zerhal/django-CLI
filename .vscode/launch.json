@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=django-cli",
+                    "--package=django-cli"
+                ],
+                "filter": {
+                    "name": "django-cli",
+                    "kind": "bin"
+                }
+            },
+            "program": "${workspaceFolder}/target/debug/django-cli",
+            "args": [
+                "create-project"
+            ],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "cargo build",
+            "stopOnEntry": false,
+            "sourceLanguages": ["rust"],
+            "console": "externalTerminal",  // Use an external terminal
+            "externalConsole": true
+        }
+    ]
+}
